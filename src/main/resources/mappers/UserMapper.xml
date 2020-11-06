@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianyisoft.mymoney.dao.UserMapper">
+    <resultMap id="user" type="com.tianyisoft.mymoney.entity.User">
+        <id property="id" column="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="is_enable" property="enable"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+    <select id="getByName" resultMap="user">
+        select * from user where name = #{name} limit 1
+    </select>
+    <select id="getById" resultMap="user">
+        select * from user where id = #{id}
+    </select>
+</mapper>
