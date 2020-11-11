@@ -10,3 +10,7 @@ mybatis:
 logging:
   level:
     com.tianyisoft.mymoney: debug
+
+
+jwt:
+  secret: "123456"
