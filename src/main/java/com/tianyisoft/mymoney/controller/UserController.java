@@ -2,7 +2,6 @@ package com.tianyisoft.mymoney.controller;
 
 import com.tianyisoft.mymoney.entity.User;
 import com.tianyisoft.mymoney.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
