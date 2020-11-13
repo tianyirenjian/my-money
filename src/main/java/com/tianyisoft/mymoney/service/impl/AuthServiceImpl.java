@@ -32,6 +32,9 @@ public class AuthServiceImpl implements AuthService {
         if (u == null || !BCrypt.verifyer().verify(user.getPassword().toCharArray(), u.getPassword().toCharArray()).verified) {
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED, "用户名或密码错误！");
         }
+        if (!u.getEnable()) {
+            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED, "用户已被禁用！");
+        }
         String token = JWT.create()
                 .withExpiresAt(DateUtils.nowAddYear(1))
                 .withClaim("uid", u.getId())
