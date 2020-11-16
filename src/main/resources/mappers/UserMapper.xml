@@ -7,6 +7,7 @@
         <result column="password" property="password"/>
         <result column="phone" property="phone"/>
         <result column="is_enable" property="enable"/>
+        <result column="is_admin" property="admin"/>
         <result column="created_at" property="createdAt"/>
         <result column="updated_at" property="updatedAt"/>
     </resultMap>

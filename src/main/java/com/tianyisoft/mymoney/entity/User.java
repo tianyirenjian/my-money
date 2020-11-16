@@ -11,6 +11,7 @@ public class User {
     private String password;
     private String phone;
     private Boolean enable;
+    private Boolean admin;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
