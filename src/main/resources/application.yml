@@ -6,6 +6,8 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 logging:
   level:

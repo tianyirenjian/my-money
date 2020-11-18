@@ -21,7 +21,7 @@ public interface SystemTagMapper {
     /**
      * 添加系统标签
      * @param tag object
-     * @return 自增 id
+     * @return 添加条数
      */
     @Insert("INSERT INTO system_tag (name) values (#{name})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
