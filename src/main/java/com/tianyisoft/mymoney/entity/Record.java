@@ -2,18 +2,22 @@ package com.tianyisoft.mymoney.entity;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 /**
  * @author tianyi
  */
 @Data
-public class UserTag implements Tag {
+public class Record {
     private Integer id;
-    @NotEmpty(message = "名称不能为空")
-    private String name;
+    private Integer tagId;
+    private String tagType;
     private Integer userId;
+    private Boolean out;
+    private Integer money;
+    private Integer bookId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    private Tag tag;
 }

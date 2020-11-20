@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianyisoft.mymoney.dao.RecordMapper">
+    <select id="paginate" resultType="com.tianyisoft.mymoney.entity.Record">
+        select * from record
+        <if test="userId != null">
+            where user_id = #{userId}
+        </if>
+        order by #{sortBy} desc limit #{offset}, #{limit}
+    </select>
+
+    <insert id="save" parameterType="com.tianyisoft.mymoney.entity.Record">
+        insert into record (tag_id, tag_type, user_id, is_out, money, created_at, updated_at) values (#{tagId}, #{tagType}, #{userId}, #{out}, #{money}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <select id="count" parameterType="map" resultType="integer">
+        select count(*) from record
+        <trim prefix="where" prefixOverrides="and">
+            <foreach collection="map" index="key" item="item">
+                and ${key} = #{item}
+            </foreach>
+        </trim>
+    </select>
+</mapper>

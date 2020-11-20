@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
  */
 @Data
 @NoDatetime
-public class SystemTag {
+public class SystemTag implements Tag {
     private Integer id;
     @NotEmpty(message = "名称不能为空")
     private String name;

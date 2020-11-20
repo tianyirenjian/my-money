@@ -1,6 +1,7 @@
 package com.tianyisoft.mymoney.dao;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author tianyi
@@ -12,6 +13,22 @@ public interface CurdMapper<E> {
      * @return 列表
      */
     List<E> list();
+
+    /**
+     * 分页
+     * @param offset offset
+     * @param limit page size
+     * @param sortBy sort by
+     * @return 列表
+     */
+    List<E> paginate(Integer offset, Integer limit, String sortBy);
+
+    /**
+     * 获取数量
+     * @param condition key value
+     * @return count
+     */
+    Integer count(Map<String, Object> condition);
 
     /**
      * 添加

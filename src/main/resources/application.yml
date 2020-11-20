@@ -3,6 +3,8 @@ spring:
     url: jdbc:mysql://localhost:3306/mymoney?serverTimezone=UTC
     username: root
     password: 123456
+  main:
+    banner-mode: off
 
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml

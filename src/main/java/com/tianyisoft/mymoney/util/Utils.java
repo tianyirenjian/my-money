@@ -11,4 +11,16 @@ public class Utils {
         field.setAccessible(true);
         return field.get(object);
     }
+
+    public static Integer parseIntDefault(String string, Integer def) {
+        if (string == null) {
+            return def;
+        }
+        Integer integer = def;
+        try {
+            integer = Integer.parseInt(string);
+        } catch (NumberFormatException ignored) {
+        }
+        return integer;
+    }
 }
