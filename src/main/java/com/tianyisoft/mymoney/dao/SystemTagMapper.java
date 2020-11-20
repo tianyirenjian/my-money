@@ -10,11 +10,12 @@ import java.util.List;
  * @author tianyi
  */
 @Repository
-public interface SystemTagMapper {
+public interface SystemTagMapper extends CurdMapper<SystemTag> {
     /**
      * 获取所有系统标签
      * @return system tag list
      */
+    @Override
     @Select("SELECT * FROM system_tag")
     List<SystemTag> list();
 
@@ -23,6 +24,7 @@ public interface SystemTagMapper {
      * @param tag object
      * @return 添加条数
      */
+    @Override
     @Insert("INSERT INTO system_tag (name) values (#{name})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     int save(SystemTag tag);
@@ -32,6 +34,7 @@ public interface SystemTagMapper {
      * @param id 标签 id
      * @return 标签
      */
+    @Override
     @Select("SELECT * FROM system_tag WHERE id = #{id}")
     SystemTag find(Integer id);
 
@@ -40,6 +43,7 @@ public interface SystemTagMapper {
      * @param tag object
      * @return 修改数量
      */
+    @Override
     @Update("UPDATE system_tag SET name = #{name} WHERE id = #{id}")
     int update(SystemTag tag);
 
@@ -48,6 +52,7 @@ public interface SystemTagMapper {
      * @param id 标签 id
      * @return 删除数量
      */
+    @Override
     @Delete("DELETE FROM system_tag WHERE id = #{id}")
     int destroy(Integer id);
 }
