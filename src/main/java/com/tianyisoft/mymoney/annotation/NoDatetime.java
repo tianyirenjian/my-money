@@ -1,4 +1,4 @@
-package com.tianyisoft.mymoney.entity;
+package com.tianyisoft.mymoney.annotation;
 
 import java.lang.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.tianyisoft.mymoney.interceptor;
 
-import com.tianyisoft.mymoney.entity.NoDatetime;
+import com.tianyisoft.mymoney.annotation.NoDatetime;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
