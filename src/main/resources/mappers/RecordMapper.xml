@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tianyisoft.mymoney.dao.RecordMapper">
-    <select id="paginate" resultType="com.tianyisoft.mymoney.entity.Record">
+    <resultMap id="record" type="com.tianyisoft.mymoney.entity.Record">
+        <id column="id" property="id"/>
+        <result column="tag_id" property="tagId"/>
+        <result column="tag_type" property="tagType"/>
+        <result column="user_id" property="userId"/>
+        <result column="is_out" property="out"/>
+        <result column="money" property="money"/>
+        <result column="book_id" property="bookId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+    <select id="paginate" resultMap="record">
         select * from record
         <if test="userId != null">
             where user_id = #{userId}
@@ -9,9 +20,13 @@
         order by #{sortBy} desc limit #{offset}, #{limit}
     </select>
 
-    <insert id="save" parameterType="com.tianyisoft.mymoney.entity.Record">
-        insert into record (tag_id, tag_type, user_id, is_out, money, created_at, updated_at) values (#{tagId}, #{tagType}, #{userId}, #{out}, #{money}, #{createdAt}, #{updatedAt})
-    </insert>
+    <select id="list" resultMap="record">
+        select * from record
+    </select>
+
+    <select id="find" parameterType="Integer" resultMap="record">
+        select * from record where id = #{id}
+    </select>
 
     <select id="count" parameterType="map" resultType="integer">
         select count(*) from record
@@ -21,4 +36,40 @@
             </foreach>
         </trim>
     </select>
+
+    <insert id="save" parameterType="com.tianyisoft.mymoney.entity.Record" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into record (tag_id, tag_type, user_id,
+        <if test="out != null">
+            is_out,
+        </if>
+        <if test="bookId != null">
+            book_id,
+        </if>
+        money, created_at, updated_at) values (#{tagId}, #{tagType}, #{userId},
+        <if test="out != null">
+            #{out},
+        </if>
+        <if test="bookId != null">
+            #{bookId}
+        </if>
+        #{money}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="update" parameterType="com.tianyisoft.mymoney.entity.Record">
+        update record set
+        <if test="tagId != null">
+            tag_id = #{tagId},
+        </if>
+        <if test="tagType != null">
+            tag_type = #{tagType},
+        </if>
+        <if test="out != null">
+            is_out = #{out},
+        </if>
+        <if test="money != null">
+            money = #{money},
+        </if>
+        updated_at = #{updatedAt}
+        where id = #{id}
+    </update>
 </mapper>

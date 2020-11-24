@@ -4,6 +4,8 @@ import com.tianyisoft.mymoney.entity.Record;
 import com.tianyisoft.mymoney.pojo.Pager;
 import com.tianyisoft.mymoney.service.RecordService;
 import com.tianyisoft.mymoney.util.Utils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,5 +33,23 @@ public class RecordController {
         record.setUserId((Integer) Utils.getFieldValueFromObject(user, "id"));
         service.save(record);
         return service.find(record.getId());
+    }
+
+    @GetMapping("/{id}")
+    public Record find(@PathVariable Integer id) {
+        return service.find(id);
+    }
+
+    @PutMapping("/{id}")
+    public Record update(@PathVariable Integer id, @RequestBody Record record) {
+        record.setId(id);
+        service.update(record);
+        return service.find(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> destroy(@PathVariable Integer id) {
+        service.destroy(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

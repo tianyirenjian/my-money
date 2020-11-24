@@ -15,14 +15,6 @@ import java.util.Map;
 public interface RecordMapper extends CurdMapper<Record> {
     /**
      * {@inheritDoc}
-     * @return
-     */
-    @Override
-    @Select("select * from record")
-    List<Record> list();
-
-    /**
-     * {@inheritDoc}
      * @param offset offset
      * @param limit page size
      * @param sortBy sort by
@@ -42,15 +34,6 @@ public interface RecordMapper extends CurdMapper<Record> {
      * @return 列表
      */
     List<Record> paginate(Integer offset, Integer limit, Integer userId, String sortBy);
-
-    /**
-     * {@inheritDoc}
-     * @param id id
-     * @return
-     */
-    @Override
-    @Select("select * from record where id = #{id}")
-    Record find(Integer id);
 
     /**
      * {@inheritDoc}
