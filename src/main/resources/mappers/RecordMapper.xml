@@ -11,6 +11,7 @@
         <result column="book_id" property="bookId"/>
         <result column="created_at" property="createdAt"/>
         <result column="updated_at" property="updatedAt"/>
+        <association property="tag" column="{tagId=tag_id,tagType=tag_type}" select="selectTag"/>
     </resultMap>
     <select id="paginate" resultMap="record">
         select * from record
@@ -35,6 +36,15 @@
                 and ${key} = #{item}
             </foreach>
         </trim>
+    </select>
+
+    <select id="selectTag" resultType="com.tianyisoft.mymoney.entity.Tag">
+        <if test='tagType=="com.tianyisoft.mymoney.entity.SystemTag"'>
+            select * from system_tag where id = #{tagId}
+        </if>
+        <if test='tagType=="com.tianyisoft.mymoney.entity.UserTag"'>
+            select * from user_tag where id = #{tagId}
+        </if>
     </select>
 
     <insert id="save" parameterType="com.tianyisoft.mymoney.entity.Record" useGeneratedKeys="true" keyColumn="id" keyProperty="id">

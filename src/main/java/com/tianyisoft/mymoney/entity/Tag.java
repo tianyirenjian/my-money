@@ -1,30 +1,15 @@
 package com.tianyisoft.mymoney.entity;
 
+import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author tianyi
  */
-public interface Tag {
-    /**
-     * get id
-     * @return id
-     */
-    Integer getId();
-
-    /**
-     * set id
-     * @param id id
-     */
-    void setId(Integer id);
-
-    /**
-     * get name
-     * @return name
-     */
-    String getName();
-
-    /**
-     * set name
-     * @param name name
-     */
-    void setName(String name);
+@Data
+public class Tag {
+    private Integer id;
+    @NotEmpty(message = "名称不能为空")
+    private String name;
 }

@@ -9,10 +9,6 @@ import javax.validation.constraints.NotEmpty;
 /**
  * @author tianyi
  */
-@Data
 @NoDatetime
-public class SystemTag implements Tag {
-    private Integer id;
-    @NotEmpty(message = "名称不能为空")
-    private String name;
+public class SystemTag extends Tag {
 }
